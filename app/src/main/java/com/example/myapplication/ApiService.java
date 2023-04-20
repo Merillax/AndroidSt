@@ -12,6 +12,8 @@ import retrofit2.http.PUT;
 public interface ApiService {
     @POST("sendCode")
     Call<SendCodeResponse> sendCode(@Header("email") String email);
+    @POST("signin")
+    Call<SendCodeResponse> signin(@Header("email") String email , @Header("code") String code);
 
 
 

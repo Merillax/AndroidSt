@@ -17,18 +17,20 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-
 public class MainActivity5 extends AppCompatActivity {
-
+    EditText number1;
+    EditText number2;
+    EditText number3;
+    EditText number4;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main5);
-        EditText number1=findViewById(R.id.editTextNumber);
-        EditText number2=findViewById(R.id.editTextNumber5);
-        EditText number3=findViewById(R.id.editTextNumber6);
-        EditText number4=findViewById(R.id.editTextNumber7);
+        number1=findViewById(R.id.editTextNumber);
+        number2=findViewById(R.id.editTextNumber5);
+        number3=findViewById(R.id.editTextNumber6);
+        number4=findViewById(R.id.editTextNumber7);
         number1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -109,7 +111,7 @@ public class MainActivity5 extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
-
+                codeRetrie();
             }
         });
 
@@ -130,33 +132,67 @@ public class MainActivity5 extends AppCompatActivity {
                 edit1.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        ApiClient apiClient = new ApiClient();
-
-                        apiClient.getApiService(this).sendCode()
-                                .enqueue(new Callback<SendCodeResponse>() {
-                                    @Override
-                                    public void onResponse(Call<SendCodeResponse> call, Response<SendCodeResponse> response) {
-                                        if(!response.isSuccessful())
-                                        {
-
-                                            return;
-                                        }
-                                        Intent intent = new Intent(MainActivity4.this,MainActivity5.class);
-                                        startActivity(intent);
-                                        return;
-                                    }
-
-                                    @Override
-                                    public void onFailure(Call<SendCodeResponse> call, Throwable t) {
-                                        Toast toast=Toast.makeText(MainActivity4.this, "Ошибка", Toast.LENGTH_LONG);
-                                        toast.show();;
-                                    }
-                                });
-                    }
+                        code();
+                        edit1.setText("           ");
+                        edit1.setEnabled(false);
+                             }
                 });
 
             }
         }.start();
 
+    }
+    public void code()
+    {
+        SessionManager sessionManager = new SessionManager(this);
+        String email = sessionManager.getEmail();
+        ApiClient apiClient = new ApiClient();
+        apiClient.getApiService(this).sendCode(email)
+                .enqueue(new Callback<SendCodeResponse>() {
+                    @Override
+                    public void onResponse(Call<SendCodeResponse> call, Response<SendCodeResponse> response) {
+                        if(!response.isSuccessful())
+                        {
+
+                            return;
+                        }
+
+                        return;
+                    }
+
+                    @Override
+                    public void onFailure(Call<SendCodeResponse> call, Throwable t) {
+
+                    }
+                });
+    }
+    public void codeRetrie()
+    {
+        SessionManager sessionManager = new SessionManager(this);
+        String email = sessionManager.getEmail();
+        String code = number1.getText().toString() + number2.getText().toString() + number3.getText().toString()+number4.getText().toString();
+        sessionManager.saveCode(code);
+        ApiClient apiClient  = new ApiClient();
+        apiClient.getApiService(this).signin(email, code)
+                .enqueue(new Callback<SendCodeResponse>() {
+                    @Override
+                    public void onResponse(Call<SendCodeResponse> call, Response<SendCodeResponse> response) {
+                        if(!response.isSuccessful())
+                        {
+
+                            return;
+                        }
+                        String str = response.message();
+                        sessionManager.saveToken(SendCodeResponse.getMessage());
+                        Intent intent = new Intent(MainActivity5.this, MainActivity6.class);
+                        startActivity(intent);
+                        return;
+                    }
+
+                    @Override
+                    public void onFailure(Call<SendCodeResponse> call, Throwable t) {
+
+                    }
+                });
     }
 }
