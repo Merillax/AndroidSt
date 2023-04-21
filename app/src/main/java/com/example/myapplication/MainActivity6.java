@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.Image;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -26,6 +27,19 @@ public class MainActivity6 extends AppCompatActivity {
     ImageView i4;
     ImageView i5;
     String kod="";
+    public void chColor(Button but){
+        but.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction()==MotionEvent.ACTION_UP)
+                {but.setBackgroundColor(getResources().getColor(R.color.pidaras));}
+                else if (event.getAction()==MotionEvent.ACTION_DOWN){
+                    but.setBackgroundColor(getResources().getColor(R.color.knopka2));
+                }
+                return false;
+            }
+        });
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +56,15 @@ public class MainActivity6 extends AppCompatActivity {
         b9=findViewById(R.id.number9);
         b0=findViewById(R.id.number0);
         i5=findViewById(R.id.imageView11);
-
+        chColor(b2);
+        chColor(b3);
+        chColor(b4);
+        chColor(b5);
+        chColor(b6);
+        chColor(b7);
+        chColor(b8);
+        chColor(b9);
+        chColor(b1);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -269,6 +291,7 @@ public class MainActivity6 extends AppCompatActivity {
                 }
             }
         });
+        chColor(b0);
         b0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

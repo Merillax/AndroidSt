@@ -59,10 +59,10 @@ public class MainActivity4 extends AppCompatActivity {
     {
         EditText edit = findViewById(R.id.editTextTextEmailAddress2);
         SessionManager sessionManager = new SessionManager(this);
-        String email = edit.getText().toString();
-        sessionManager.saveEmail(email);
+        String emаil = edit.getText().toString();
+        sessionManager.saveEmail(emаil);
         ApiClient apiClient = new ApiClient();
-        apiClient.getApiService(this).sendCode(email)
+        apiClient.getApiService(this).sendCode(emаil)
                 .enqueue(new Callback<SendCodeResponse>() {
                     @Override
                     public void onResponse(Call<SendCodeResponse> call, Response<SendCodeResponse> response) {
