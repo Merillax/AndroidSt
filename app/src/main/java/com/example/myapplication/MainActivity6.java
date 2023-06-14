@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.view.MotionEvent;
@@ -65,6 +66,7 @@ public class MainActivity6 extends AppCompatActivity {
         chColor(b8);
         chColor(b9);
         chColor(b1);
+        SessionManager sessionManager=new SessionManager(this);
         b1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,6 +89,11 @@ public class MainActivity6 extends AppCompatActivity {
                     kod=kod+"1";
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
+                }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
                 }
 
             }
@@ -114,6 +121,11 @@ public class MainActivity6 extends AppCompatActivity {
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
                 }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
+                }
             }
         });
         b3.setOnClickListener(new View.OnClickListener() {
@@ -138,6 +150,11 @@ public class MainActivity6 extends AppCompatActivity {
                     kod=kod+"3";
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
+                }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -164,6 +181,11 @@ public class MainActivity6 extends AppCompatActivity {
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
                 }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
+                }
             }
         });
         b5.setOnClickListener(new View.OnClickListener() {
@@ -188,6 +210,11 @@ public class MainActivity6 extends AppCompatActivity {
                     kod=kod+"5";
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
+                }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -214,6 +241,11 @@ public class MainActivity6 extends AppCompatActivity {
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
                 }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
+                }
             }
         });
         b7.setOnClickListener(new View.OnClickListener() {
@@ -238,6 +270,11 @@ public class MainActivity6 extends AppCompatActivity {
                     kod=kod+"7";
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
+                }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -264,6 +301,11 @@ public class MainActivity6 extends AppCompatActivity {
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
                 }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
+                }
             }
         });
         b9.setOnClickListener(new View.OnClickListener() {
@@ -288,6 +330,11 @@ public class MainActivity6 extends AppCompatActivity {
                     kod=kod+"9";
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
+                }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
                 }
             }
         });
@@ -314,6 +361,11 @@ public class MainActivity6 extends AppCompatActivity {
                     kod=kod+"0";
                     i4=findViewById(R.id.imageView8);
                     i4.setImageResource(R.drawable.el);
+                }
+                if (kod.length()==4){
+                    sessionManager.savePassword(kod);
+                    Intent intent = new Intent(MainActivity6.this,MainActivity7.class);
+                    startActivity(intent);
                 }
             }
         });

@@ -83,19 +83,33 @@ public class SessionManager {
     {
         return sharedPreferences.getString("email", null);
     }
-    public void saveCode(String code)
+    public void saveCode(String discription, String code)
     {
         SharedPreferences.Editor editor =sharedPreferences.edit();
-        editor.putString("code", code);
+        editor.putString(discription, code);
         editor.apply();
+    }
+    public void savePassword( String pass)
+    {
+        SharedPreferences.Editor editor =sharedPreferences.edit();
+        editor.putString("password",pass);
+        editor.apply();
+    }
+    public String getPassword()
+    {
+        return sharedPreferences.getString("password", null);
     }
     public String getToken()
     {
         return sharedPreferences.getString("token", null);
     }
-    public String getCode()
+    public String getOnlineCode()
     {
-        return sharedPreferences.getString("code", null);
+        return sharedPreferences.getString("online", null);
+    }
+    public String getOflineCode()
+    {
+        return sharedPreferences.getString("ofline", null);
     }
 
 

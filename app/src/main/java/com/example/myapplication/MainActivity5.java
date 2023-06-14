@@ -171,7 +171,7 @@ public class MainActivity5 extends AppCompatActivity {
         SessionManager sessionManager = new SessionManager(this);
         String email = sessionManager.getEmail();
         String code = number1.getText().toString() + number2.getText().toString() + number3.getText().toString()+number4.getText().toString();
-        sessionManager.saveCode(code);
+        sessionManager.saveCode("online", code);
         ApiClient apiClient  = new ApiClient();
         apiClient.getApiService(this).signin(email, code)
                 .enqueue(new Callback<SendCodeResponse>() {
@@ -191,6 +191,10 @@ public class MainActivity5 extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<SendCodeResponse> call, Throwable t) {
+                        if(code.equals(sessionManager.getOflineCode())){
+                            Intent intent = new Intent(MainActivity5.this, MainActivity6.class);
+                            startActivity(intent);
+                        }
 
                     }
                 });

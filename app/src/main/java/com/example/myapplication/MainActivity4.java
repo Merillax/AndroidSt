@@ -1,23 +1,38 @@
 package com.example.myapplication;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.DownloadManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
 public class MainActivity4 extends AppCompatActivity {
+    int code;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,8 +93,14 @@ public class MainActivity4 extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<SendCodeResponse> call, Throwable t) {
+                        Random random=new Random();
+                        int code=random.nextInt(8999)+1000;
+                        sessionManager.saveCode("ofline",String.valueOf( code));
                         Toast toast=Toast.makeText(MainActivity4.this, "Ошибка", Toast.LENGTH_LONG);
-                        toast.show();;
+                        Log.i("Check code",String.valueOf(code));
+                        toast.show();
+                        Intent intent = new Intent(MainActivity4.this,MainActivity5.class);
+                        startActivity(intent);
                     }
                 });
     }
