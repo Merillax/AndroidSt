@@ -14,6 +14,8 @@ public interface ApiService {
     Call<SendCodeResponse> sendCode(@Header("email") String email);
     @POST("signin")
     Call<SendCodeResponse> signin(@Header("email") String email , @Header("code") String code);
+    @POST("createProfile")
+    Call<SendCodeResponse> createProfile();
 
 
 

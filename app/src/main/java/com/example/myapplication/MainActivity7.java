@@ -140,8 +140,7 @@ public class MainActivity7 extends AppCompatActivity {
         but1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent =new Intent(MainActivity7.this,MainActivity6.class);
-                startActivity(intent);
+
             }
         });
 

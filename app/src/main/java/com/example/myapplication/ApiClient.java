@@ -2,10 +2,10 @@ package com.example.myapplication;
 
 import android.content.Context;
 
-
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import com.example.medic.data.Service.ApiService;
 
 public class ApiClient {
     private String BASE_URL ="https://medic.madskill.ru/api/";
