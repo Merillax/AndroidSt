@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -111,6 +112,7 @@ public class MainActivity5 extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable editable) {
+
                 codeRetrie();
             }
         });
@@ -179,9 +181,14 @@ public class MainActivity5 extends AppCompatActivity {
                     public void onResponse(Call<SendCodeResponse> call, Response<SendCodeResponse> response) {
                         if(!response.isSuccessful())
                         {
-
+                            if(sessionManager.getOflineCode().equals(code)){
+                                Intent intent = new Intent(MainActivity5.this, MainActivity6.class);
+                                startActivity(intent);
+                                Log.i("Check code",response.message());
+                            }
                             return;
                         }
+
                         String str = response.message();
                         sessionManager.saveToken(SendCodeResponse.getMessage());
                         Intent intent = new Intent(MainActivity5.this, MainActivity6.class);
@@ -191,10 +198,9 @@ public class MainActivity5 extends AppCompatActivity {
 
                     @Override
                     public void onFailure(Call<SendCodeResponse> call, Throwable t) {
-                        if(code.equals(sessionManager.getOflineCode())){
-                            Intent intent = new Intent(MainActivity5.this, MainActivity6.class);
-                            startActivity(intent);
-                        }
+
+
+
 
                     }
                 });

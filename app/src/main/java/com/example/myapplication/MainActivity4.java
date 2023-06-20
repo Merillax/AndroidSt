@@ -83,9 +83,15 @@ public class MainActivity4 extends AppCompatActivity {
                     public void onResponse(Call<SendCodeResponse> call, Response<SendCodeResponse> response) {
                         if(!response.isSuccessful())
                         {
-
                             return;
                         }
+                        Random random=new Random();
+                        int code=random.nextInt(8999)+1000;
+                        sessionManager.saveCode("ofline",String.valueOf(code));
+                        Toast toast=Toast.makeText(MainActivity4.this, "Ошибка", Toast.LENGTH_LONG);
+                        Log.i("Check code",String.valueOf(code));
+                        Log.i("Check code",call.toString());
+
                         Intent intent = new Intent(MainActivity4.this,MainActivity5.class);
                         startActivity(intent);
                         return;
@@ -95,7 +101,7 @@ public class MainActivity4 extends AppCompatActivity {
                     public void onFailure(Call<SendCodeResponse> call, Throwable t) {
                         Random random=new Random();
                         int code=random.nextInt(8999)+1000;
-                        sessionManager.saveCode("ofline",String.valueOf( code));
+                        sessionManager.saveCode("ofline",String.valueOf(code));
                         Toast toast=Toast.makeText(MainActivity4.this, "Ошибка", Toast.LENGTH_LONG);
                         Log.i("Check code",String.valueOf(code));
                         toast.show();
